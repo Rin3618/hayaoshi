@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>早押しゲーム</title>
+        <script language="JavaScript"><!--
+        prImage1=new Image();
+        prImage1.src="1.gif";
+        prImage2=new Image();
+        prImage2.src="2.gif";
+        prImage3=new Image();
+        prImage3.src="3.gif";
+        prImage4=new Image();
+        prImage4.src="4.gif";
+        prImage5=new Image();
+        prImage5.src="5.gif";
+        prImage6=new Image();
+        prImage6.src="6.gif";
+        prImage7=new Image();
+        prImage7.src="7.gif";
+        prImage8=new Image();
+        prImage8.src="8.gif";
+        prImage9=new Image();
+        prImage9.src="9.gif";
+        count = 0;
+        normalFlag = false;
+        hardFlag = false;
+        hard2Flag = false;
+
+        function Game(){
+            normalFlag=true;
+            gameFlag = true;
+            n=Math.floor(Math.random()*10);
+            document.images["Num"].src=n+".gif";
+            dateObj=new Date();
+            startSec=dateObj.getTime();}
+
+            function Gameh(){
+            hardFlag = true;
+            gameFlag = true;
+            n=Math.floor(Math.random()*10);
+            if(n==0)n=1;
+            document.images["Num"].src=n+".gif";
+            dateObj=new Date();
+            startSec=dateObj.getTime();}
+
+            function Gameh2(){
+            hard2Flag = true;
+            gameFlag = true;
+            n=Math.floor(Math.random()*10);
+            if(n==9)n=8;
+            document.images["Num"].src=n+".gif";
+            dateObj=new Date();
+            startSec=dateObj.getTime();}
+
+            function keyCheck(){
+                if(gameFlag == false)return;
+                k=event.keyCode - 48;
+                if(normalFlag==true){
+                if(k==n){
+                    n=Math.floor(Math.random()*10);
+                    document.images["Num"].src=n+".gif";
+                    count=count+1;
+                    if(count==20){
+                        dateObj=new Date();
+                        endSec=dateObj.getTime();
+                        time=endSec-startSec;
+                        time=time/1000;
+                        alert("ゲームオーバー:"+time+"秒");
+                        gameFlag=false;}
+                    }}
+                    if(hardFlag==true){
+                if(k==n-1){
+                    n=Math.floor(Math.random()*10);
+                    if(n==0)n=1;
+                    document.images["Num"].src=n+".gif";
+                    count=count+1;
+                    if(count==20){
+                        dateObj=new Date();
+                        endSec=dateObj.getTime();
+                        time=endSec-startSec;
+                        time=time/1000;
+                        alert("ゲームオーバー:"+time+"秒");
+                        gameFlag=false;}
+                }}
+                if(hard2Flag==true){
+                if(k==n+1){
+                    n=Math.floor(Math.random()*10);
+                    if(n==9)n=8;
+                    document.images["Num"].src=n+".gif";
+                    count=count+1;
+                    if(count==20){
+                        dateObj=new Date();
+                        endSec=dateObj.getTime();
+                        time=endSec-startSec;
+                        time=time/1000;
+                        alert("ゲームオーバー:"+time+"秒");
+                        gameFlag=false;}
+                }}
+                }
+                --></script>
+    </head>
+    <body onKeydown="keyCheck()">
+        
+		<img src="0.gif"name="Num"><br><br>
+        <input type="button" value="Normal" onClick="Game()"><br><br>
+        <input type="button" value="Hard(マイナス1の数字を押す)" onClick="Gameh()"><br><br>
+        <input type="button" value="Hard2(プラス1の数字を押す)" onClick="Gameh2()"><br><br>
+    </body>
+</html>
